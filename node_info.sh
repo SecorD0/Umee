@@ -133,11 +133,11 @@ else
 	fi
 	printf_n "$t_lb" "$latest_block_height"
 	if [ "$catching_up" = "true" ]; then
-		#current_block=$(wget -qO- https://ki-testnet.incodes.dev/blocks | jq ".data.blocks[0].blockHeight" | tr -d '"')
-		#diff=`bc -l <<< "$current_block-$latest_block_height"`
-		#takes_time=`bc -l <<< "$diff/4/60"`
+		current_block=`wget -qO- 62.171.166.224:26657/block | jq -r ".result.block.header.height"`
+		diff=`bc -l <<< "$current_block-$latest_block_height"`
+		takes_time=`bc -l <<< "$diff/4/60"`
 		printf_n "$t_sy1"
-		#printf_n "$t_sy2" "$current_block" "$latest_block_height" "$diff" "$takes_time"		
+		printf_n "$t_sy2" "$current_block" "$latest_block_height" "$diff" "$takes_time"		
 	else
 		printf_n "$t_sy3"
 	fi
