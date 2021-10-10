@@ -27,7 +27,7 @@ while test $# -gt 0; do
 		echo -e "         (you can send Pull request with new texts to add a language)"
 		echo -e "https://t.me/letskynode — node Community"
 		echo
-		return 0
+		return 0 2>/dev/null; exit 0
 		;;
 	-l*|--language*)
 		if ! grep -q "=" <<< $1; then shift; fi
