@@ -22,7 +22,7 @@ while test $# -gt 0; do
 		echo -e "${C_LY}sudo apt install tmux${RES}"
 		echo -e " ${C_C}2)${RES} Open new Tmux window"
 		echo -e "${C_LY}tmux new -s unjailer${RES}"
-		echo -e " ${C_C}3)${RES} Create and enter a directory for config file"
+		echo -e " ${C_C}3)${RES} If necessary, create and enter a directory for config file"
 		echo -e "${C_LY}mkdir unjailer/${RES}"
 		echo -e "${C_LY}cd unjailer/${RES}"
 		echo -e " ${C_C}4)${RES} Create a config file"
