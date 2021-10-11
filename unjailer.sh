@@ -32,7 +32,7 @@ while test $# -gt 0; do
 		echo -e " ${C_C}6)${RES} Run the script"
 		echo -e "${C_LY}. <(wget -qO- https://raw.githubusercontent.com/SecorD0/Umee/main/unjailer.sh)${RES}"
 		echo -e " ${C_C}7)${RES} Detach the window"
-		echo -e "Via shortcut: ${C_LY}Ctrl+B, D${RES}"
+		echo -e "Via hotkey: ${C_LY}Ctrl+B, D${RES}"
 		echo -e "Via command: ${C_LY}tmux detach${RES}"
 		echo
 		echo -e " Command to attach the window"
