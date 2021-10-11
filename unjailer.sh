@@ -28,7 +28,7 @@ while test $# -gt 0; do
 		echo -e " ${C_C}4)${RES} Create the config file"
 		echo -e "${C_LY}. <(wget -qO- https://raw.githubusercontent.com/SecorD0/Umee/main/unjailer.sh)${RES}"
 		echo -e " ${C_C}5)${RES} Open the config file via MobaXterm notepad, Nano, Vi, etc. and customize it"
-		echo -e "${C_LY}cat `pwd`/u_config.sh${RES}"
+		echo -e "${C_LY}cat u_config.sh${RES}"
 		echo -e " ${C_C}6)${RES} Run the script"
 		echo -e "${C_LY}. <(wget -qO- https://raw.githubusercontent.com/SecorD0/Umee/main/unjailer.sh)${RES}"
 		echo -e " ${C_C}7)${RES} Detach the window"
