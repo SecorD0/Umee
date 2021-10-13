@@ -52,6 +52,7 @@ printf_n(){ printf "$1\n" "${@:2}"; }
 # Texts
 if [ "$language" = "RU" ]; then
 	t_ewa="Для просмотра баланса кошелька необходимо добавить его в систему виде переменной, поэтому ${C_LGn}введите пароль от кошелька${RES}"
+	t_ewa_err="${C_LR}Не удалось получить адрес кошелька!${RES}"
 	t_id="ID ноды:                      ${C_LGn}%s${RES}"
 	t_nn="\nНазвание ноды:                ${C_LGn}%s${RES}"
 	t_ide="Keybase ключ:                 ${C_LGn}%s${RES}"
@@ -74,6 +75,7 @@ if [ "$language" = "RU" ]; then
 #elif [ "$language" = ".." ]; then
 else
 	t_ewa="To view the wallet balance, you have to add it to the system as a variable, so ${C_LGn}enter the wallet password${RES}"
+	t_ewa_err="${C_LR}Failed to get the wallet address!${RES}"
 	t_nn="\nMoniker:                       ${C_LGn}%s${RES}"
 	t_id="Node ID:                       ${C_LGn}%s${RES}"
 	t_ide="Keybase key:                   ${C_LGn}%s${RES}"
@@ -98,7 +100,12 @@ sudo apt install bc -y &>/dev/null
 if [ -n "$UMEE_WALLET" ]; then umee_wallet_name="$UMEE_WALLET"; fi
 if [ -n "$umee_wallet_name" ] && [ ! -n "$umee_wallet_address" ]; then
 	printf_n "$t_ewa"
-	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/miscellaneous/insert_variable.sh) -n umee_wallet_address -v `$daemon keys show "$umee_wallet_name" -a`
+	umee_wallet_address=`$daemon keys show "$umee_wallet_name" -a`
+	if [ -n "$umee_wallet_address" ]; then
+		. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/miscellaneous/insert_variable.sh) -n umee_wallet_address -v "$umee_wallet_address"
+	else
+		printf_n "$t_ewa_err"
+	fi
 fi
 node_tcp=`cat "${node_dir}config/config.toml" | grep -oPm1 "(?<=^laddr = \")([^%]+)(?=\")"`
 status=`$daemon status --node "$node_tcp" 2>&1`
