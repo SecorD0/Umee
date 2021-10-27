@@ -60,8 +60,8 @@ if [ ! -f u_config.sh ] || [ "$create_config" = "true" ]; then
 	sudo tee <<EOF >/dev/null u_config.sh
 #!/bin/bash
 # Acceptable use:
-# u_wallet_name="umee_node" | text
-# u_wallet_name="\$umee_wallet_name" | variable
+# u_wallet_name="umee_node" # text
+# u_wallet_name="\$umee_wallet_name" # variable
 
 u_wallet_name="___"
 u_wallet_password="___"
