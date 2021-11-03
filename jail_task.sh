@@ -131,7 +131,8 @@ Block numbers you missed while in jail: ${jailed_block}-${block}" >> "$file_name
 			break
 		fi
 	done
-	printf_n "\n\n${C_LGn}All done!${RES}\nCheck this file: `pwd`/${file_name}\nAnd fill the form: https://docs.google.com/forms/d/e/1FAIpQLSdZoyAttixC3jnknjksNg92MJo3GNM9B3eGPlk0yYyaPscPCA/viewform"
+	printf_n "\n\n${C_LGn}All done!${RES}\nFill the form: https://docs.google.com/forms/d/e/1FAIpQLSdZoyAttixC3jnknjksNg92MJo3GNM9B3eGPlk0yYyaPscPCA/viewform\n\nInfo from this file: `pwd`/${file_name}\n"
+	cat "`pwd`/${file_name}"
 }
 
 # Actions
