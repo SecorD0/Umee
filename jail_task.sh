@@ -122,15 +122,19 @@ Jailing tx HASH: ${block_hash}" >> "$file_name"
 		local jailed=`jq -r ".jailed" <<< "$validator_info"`
 		printf_n "Validator jailed: ${C_LGn}${jailed}${RES}"
 		if [ "$jailed" = "false" ]; then
-			local block_hash=`wget -qO- "${rpc}block?height=${block}" | jq -r ".result.block_id.hash"`
-			local timestamp=`printf_n "$block_time" | sed 's%\.[^\.]*$%%'`
-			printf_n "Unjailing block height: ${block}
-Unjailing timestamp: ${timestamp}Z
-Unjailing tx HASH: ${block_hash}
-Block numbers you missed while in jail: ${jailed_block}-${block}" >> "$file_name"
+			local unjail_block=$((block-1))
 			break
 		fi
 	done
+	printf_n "\n${C_LGn}Checking unjail block${RES}"
+	local block_info=`umeed query staking historical-info $unjail_block --node "$rpc" --output json`
+	local block_time=`jq -r ".header.time" <<< "$block_info"`
+	local block_hash=`wget -qO- "${rpc}block?height=${unjail_block}" | jq -r ".result.block_id.hash"`
+	local timestamp=`printf_n "$block_time" | sed 's%\.[^\.]*$%%'`
+	printf_n "Unjailing block height: ${unjail_block}
+Unjailing timestamp: ${timestamp}Z
+Unjailing tx HASH: ${block_hash}
+Block numbers you missed while in jail: ${jailed_block}-${unjail_block}" >> "$file_name"
 	printf_n "\n\n${C_LGn}All done!${RES}\nFill the form: https://docs.google.com/forms/d/e/1FAIpQLSdZoyAttixC3jnknjksNg92MJo3GNM9B3eGPlk0yYyaPscPCA/viewform\n\nInfo from this file: `pwd`/${file_name}\n"
 	cat "`pwd`/${file_name}"
 }
