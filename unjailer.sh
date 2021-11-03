@@ -81,7 +81,7 @@ while true; do
 	if [ "$u_jailed" = "true" ]; then
 		printf_n "${C_LR}`current_time` | The validator is in a jail!${RES}"
 		. ./u_config.sh
-		echo -e "${u_wallet_password}\n" | umeed tx slashing unjail --from "$u_wallet_name" --chain-id umeevengers-1b --gas 800000 --gas-prices 0.025uumee --node "$u_node_tcp" -y
+		echo -e "${u_wallet_password}\n" | umeed tx slashing unjail --from "$u_wallet_name" --chain-id umeevengers-1c --gas 800000 --gas-prices 0.025uumee --node "$u_node_tcp" -y
 		unset u_wallet_name u_wallet_password
 	else
 		printf_n "${C_LGn}`current_time` | The validator isn't in a jail!${RES}" 
