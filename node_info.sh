@@ -143,7 +143,7 @@ main() {
 	local catching_up=`jq -r ".SyncInfo.catching_up" <<< $status`
 
 	local validator_address=`jq -r ".operator_address" <<< $node_info`
-	local explorer_url="${explorer_url_template}${validator_address}"
+	if [ -n "$validator_address" ]; then local explorer_url="${explorer_url_template}${validator_address}"; fi
 	local validator_pub_key=`$daemon tendermint show-validator | tr "\"" "'"`
 	local jailed=`jq -r ".jailed" <<< $node_info`
 	local delegated=`bc -l <<< "$(jq -r ".tokens" <<< $node_info)/1000000"`
