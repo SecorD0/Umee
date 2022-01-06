@@ -73,7 +73,7 @@ fi
 while true; do
 	. ./u_config.sh
 	unset u_wallet_name u_wallet_password
-	u_node_tcp=`cat $HOME/.umee/config/config.toml | grep -oPm1 "(?<=^laddr = \")([^%]+)(?=\")"`
+	u_node_tcp=`grep -oPm1 "(?<=^laddr = \")([^%]+)(?=\")" $HOME/.umee/config/config.toml`
 	u_status=`umeed status --node "$u_node_tcp" 2>&1`
 	u_moniker=`jq -r ".NodeInfo.moniker" <<< $u_status`
 	u_node_info=`umeed query staking validators --node "$u_node_tcp" --limit 1500 --output json | jq -r '.validators[] | select(.description.moniker=='\"$u_moniker\"')'`
