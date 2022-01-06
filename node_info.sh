@@ -128,7 +128,7 @@ main() {
 			printf_n "$t_ewa_err"
 		fi
 	fi
-	local local_rpc=`cat "${node_dir}config/config.toml" | grep -oPm1 "(?<=^laddr = \")([^%]+)(?=\")"`
+	local local_rpc=`grep -oPm1 "(?<=^laddr = \")([^%]+)(?=\")" "${node_dir}config/config.toml"`
 	local status=`$daemon status --node "$local_rpc" 2>&1`
 	local moniker=`jq -r ".NodeInfo.moniker" <<< $status`
 	local node_info=`$daemon query staking validators --node "$local_rpc" --limit 1500 --output json | jq -r '.validators[] | select(.description.moniker=='\"$moniker\"')'`
