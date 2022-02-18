@@ -185,7 +185,7 @@ main() {
 		if [ "$catching_up" = "true" ]; then
 			local current_block=`wget -qO- "${global_rpc}abci_info" | jq -r ".result.response.last_block_height"`
 			local diff=`bc -l <<< "$current_block-$latest_block_height"`
-			local takes_time=`bc -l <<< "$diff/4/60"`
+			local takes_time=`bc -l <<< "$diff/15/60"`
 			printf_n "$t_sy1"
 			printf_n "$t_sy2" "$current_block" "$latest_block_height" "$diff" "$takes_time"		
 		else
