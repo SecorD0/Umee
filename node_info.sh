@@ -6,8 +6,8 @@ node_dir="$HOME/.umee/"
 wallet_name="$umee_wallet_name"
 wallet_address="$umee_wallet_address"
 wallet_address_variable="umee_wallet_address"
-global_rpc="http://62.171.166.224:26657/"
-explorer_url_template="https://explorer-umeevengers.nodes.guru/validators/"
+global_rpc="https://rpc.beaked.main.network.umee.cc/"
+explorer_url_template="https://www.mintscan.io/umee/validators/"
 
 # Default variables
 language="EN"
