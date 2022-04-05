@@ -64,9 +64,6 @@ else
 	current_block=`echo`
 fi
 
-
-
-
 # Functions
 printf_n(){ printf "$1\n" "${@:2}"; }
 
