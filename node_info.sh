@@ -1,6 +1,7 @@
 #!/bin/bash
 # Default variables
 language="EN"
+network="testnet"
 raw_output="false"
 
 # Options
@@ -16,9 +17,10 @@ while test $# -gt 0; do
 		echo -e "Usage: script ${C_LGn}[OPTIONS]${RES}"
 		echo
 		echo -e "${C_LGn}Options${RES}:"
-		echo -e "  -h, --help               show help page"
-		echo -e "  -l, --language LANGUAGE  use the LANGUAGE for texts"
+		echo -e "  -h,  --help               show help page"
+		echo -e "  -l,  --language LANGUAGE  use the LANGUAGE for texts"
 		echo -e "                           LANGUAGE is '${C_LGn}EN${RES}' (default), '${C_LGn}RU${RES}'"
+		echo -e "  -m,  --mainnet            use the script in a mainnet"
 		echo -e "  -ro, --raw-output        the raw JSON output"
 		echo
 		echo -e "You can use either \"=\" or \" \" as an option and value ${C_LGn}delimiter${RES}"
@@ -33,6 +35,10 @@ while test $# -gt 0; do
 	-l*|--language*)
 		if ! grep -q "=" <<< $1; then shift; fi
 		language=`option_value $1`
+		shift
+		;;
+	-m|--mainnet)
+		network="mainnet"
 		shift
 		;;
 	-ro|--raw-output)
